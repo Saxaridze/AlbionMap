@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище DataAlbionMapModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище TestBDModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="LocationAndResource">
           <Key>
-            <PropertyRef Name="IDMainLocation" />
-            <PropertyRef Name="IDTypeOfLocation" />
+            <PropertyRef Name="ID" />
           </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="IDMainLocation" Type="int" Nullable="false" />
           <Property Name="IDTypeOfLocation" Type="int" Nullable="false" />
         </EntityType>
@@ -22,6 +22,7 @@
           <Property Name="IDRegion" Type="int" />
           <Property Name="LevelLocation" Type="nvarchar" MaxLength="50" />
           <Property Name="Enchantment" Type="nchar" MaxLength="10" />
+          <Property Name="ImageLocation" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -40,7 +41,7 @@
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="NameFiber" Type="nvarchar" MaxLength="100" />
           <Property Name="LevelFiber" Type="nvarchar" MaxLength="50" />
-          <Property Name="Image" Type="image" />
+          <Property Name="Image" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="TypeOfHide">
           <Key>
@@ -49,7 +50,7 @@
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="NameHide" Type="nvarchar" MaxLength="100" />
           <Property Name="LevelHide" Type="nvarchar" MaxLength="50" />
-          <Property Name="Image" Type="image" />
+          <Property Name="Image" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="TypeOfLocation">
           <Key>
@@ -70,7 +71,7 @@
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="NameOre" Type="nvarchar" MaxLength="100" />
           <Property Name="LevelOre" Type="nvarchar" MaxLength="50" />
-          <Property Name="Image" Type="image" />
+          <Property Name="Image" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="TypeOfRegion">
           <Key>
@@ -78,7 +79,7 @@
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="NameRegion" Type="nvarchar" MaxLength="50" />
-          <Property Name="Image" Type="image" />
+          <Property Name="Image" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="TypeOfStone">
           <Key>
@@ -87,7 +88,7 @@
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="NameStone" Type="nvarchar" MaxLength="100" />
           <Property Name="LevelStone" Type="nvarchar" MaxLength="50" />
-          <Property Name="Image" Type="image" />
+          <Property Name="Image" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="TypeOfWood">
           <Key>
@@ -96,9 +97,9 @@
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="NameWood" Type="nvarchar" MaxLength="100" />
           <Property Name="LevelWood" Type="nvarchar" MaxLength="50" />
-          <Property Name="Image" Type="image" />
+          <Property Name="Image" Type="nvarchar" MaxLength="1000" />
         </EntityType>
-        <Association Name="FK_LocationAndResource_MainLocation">
+        <Association Name="FK_LocationAndResource_MainLocation1">
           <End Role="MainLocation" Type="Self.MainLocation" Multiplicity="1" />
           <End Role="LocationAndResource" Type="Self.LocationAndResource" Multiplicity="*" />
           <ReferentialConstraint>
@@ -110,7 +111,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_LocationAndResource_TypeOfLocation">
+        <Association Name="FK_LocationAndResource_TypeOfLocation1">
           <End Role="TypeOfLocation" Type="Self.TypeOfLocation" Multiplicity="1" />
           <End Role="LocationAndResource" Type="Self.LocationAndResource" Multiplicity="*" />
           <ReferentialConstraint>
@@ -194,7 +195,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище DataAlbionMapModelContainer">
+        <EntityContainer Name="Хранилище TestBDModelContainer">
           <EntitySet Name="LocationAndResource" EntityType="Self.LocationAndResource" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MainLocation" EntityType="Self.MainLocation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -205,11 +206,11 @@
           <EntitySet Name="TypeOfRegion" EntityType="Self.TypeOfRegion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeOfStone" EntityType="Self.TypeOfStone" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeOfWood" EntityType="Self.TypeOfWood" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_LocationAndResource_MainLocation" Association="Self.FK_LocationAndResource_MainLocation">
+          <AssociationSet Name="FK_LocationAndResource_MainLocation1" Association="Self.FK_LocationAndResource_MainLocation1">
             <End Role="MainLocation" EntitySet="MainLocation" />
             <End Role="LocationAndResource" EntitySet="LocationAndResource" />
           </AssociationSet>
-          <AssociationSet Name="FK_LocationAndResource_TypeOfLocation" Association="Self.FK_LocationAndResource_TypeOfLocation">
+          <AssociationSet Name="FK_LocationAndResource_TypeOfLocation1" Association="Self.FK_LocationAndResource_TypeOfLocation1">
             <End Role="TypeOfLocation" EntitySet="TypeOfLocation" />
             <End Role="LocationAndResource" EntitySet="LocationAndResource" />
           </AssociationSet>
@@ -242,7 +243,17 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DataAlbionMapModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="TestBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="LocationAndResource">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="IDMainLocation" Type="Int32" Nullable="false" />
+          <Property Name="IDTypeOfLocation" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MainLocation" Relationship="Self.FK_LocationAndResource_MainLocation1" FromRole="LocationAndResource" ToRole="MainLocation" />
+          <NavigationProperty Name="TypeOfLocation" Relationship="Self.FK_LocationAndResource_TypeOfLocation1" FromRole="LocationAndResource" ToRole="TypeOfLocation" />
+        </EntityType>
         <EntityType Name="MainLocation">
           <Key>
             <PropertyRef Name="ID" />
@@ -252,8 +263,9 @@
           <Property Name="IDRegion" Type="Int32" />
           <Property Name="LevelLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Enchantment" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ImageLocation" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LocationAndResources" Relationship="Self.FK_LocationAndResource_MainLocation1" FromRole="MainLocation" ToRole="LocationAndResource" />
           <NavigationProperty Name="TypeOfRegion" Relationship="Self.FK_MainLocation_TypeOfRegion" FromRole="MainLocation" ToRole="TypeOfRegion" />
-          <NavigationProperty Name="TypeOfLocations" Relationship="Self.LocationAndResource" FromRole="MainLocation" ToRole="TypeOfLocation" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -272,7 +284,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="NameFiber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="LevelFiber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Image" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TypeOfLocations" Relationship="Self.FK_TypeOfLocation_TypeOfFiber" FromRole="TypeOfFiber" ToRole="TypeOfLocation" />
         </EntityType>
         <EntityType Name="TypeOfHide">
@@ -282,7 +294,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="NameHide" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="LevelHide" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Image" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TypeOfLocations" Relationship="Self.FK_TypeOfLocation_TypeOfHide" FromRole="TypeOfHide" ToRole="TypeOfLocation" />
         </EntityType>
         <EntityType Name="TypeOfLocation">
@@ -296,12 +308,12 @@
           <Property Name="IfHide" Type="Int32" />
           <Property Name="IfFiber" Type="Int32" />
           <Property Name="IfOre" Type="Int32" />
+          <NavigationProperty Name="LocationAndResources" Relationship="Self.FK_LocationAndResource_TypeOfLocation1" FromRole="TypeOfLocation" ToRole="LocationAndResource" />
           <NavigationProperty Name="TypeOfFiber" Relationship="Self.FK_TypeOfLocation_TypeOfFiber" FromRole="TypeOfLocation" ToRole="TypeOfFiber" />
           <NavigationProperty Name="TypeOfHide" Relationship="Self.FK_TypeOfLocation_TypeOfHide" FromRole="TypeOfLocation" ToRole="TypeOfHide" />
           <NavigationProperty Name="TypeOfOre" Relationship="Self.FK_TypeOfLocation_TypeOfOre" FromRole="TypeOfLocation" ToRole="TypeOfOre" />
           <NavigationProperty Name="TypeOfStone" Relationship="Self.FK_TypeOfLocation_TypeOfStone" FromRole="TypeOfLocation" ToRole="TypeOfStone" />
           <NavigationProperty Name="TypeOfWood" Relationship="Self.FK_TypeOfLocation_TypeOfWood" FromRole="TypeOfLocation" ToRole="TypeOfWood" />
-          <NavigationProperty Name="MainLocations" Relationship="Self.LocationAndResource" FromRole="TypeOfLocation" ToRole="MainLocation" />
         </EntityType>
         <EntityType Name="TypeOfOre">
           <Key>
@@ -310,7 +322,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="NameOre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="LevelOre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Image" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TypeOfLocations" Relationship="Self.FK_TypeOfLocation_TypeOfOre" FromRole="TypeOfOre" ToRole="TypeOfLocation" />
         </EntityType>
         <EntityType Name="TypeOfRegion">
@@ -319,7 +331,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="NameRegion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Image" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="MainLocations" Relationship="Self.FK_MainLocation_TypeOfRegion" FromRole="TypeOfRegion" ToRole="MainLocation" />
         </EntityType>
         <EntityType Name="TypeOfStone">
@@ -329,7 +341,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="NameStone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="LevelStone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Image" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TypeOfLocations" Relationship="Self.FK_TypeOfLocation_TypeOfStone" FromRole="TypeOfStone" ToRole="TypeOfLocation" />
         </EntityType>
         <EntityType Name="TypeOfWood">
@@ -339,9 +351,33 @@
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="NameWood" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="LevelWood" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Image" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TypeOfLocations" Relationship="Self.FK_TypeOfLocation_TypeOfWood" FromRole="TypeOfWood" ToRole="TypeOfLocation" />
         </EntityType>
+        <Association Name="FK_LocationAndResource_MainLocation1">
+          <End Role="MainLocation" Type="Self.MainLocation" Multiplicity="1" />
+          <End Role="LocationAndResource" Type="Self.LocationAndResource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MainLocation">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LocationAndResource">
+              <PropertyRef Name="IDMainLocation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LocationAndResource_TypeOfLocation1">
+          <End Role="TypeOfLocation" Type="Self.TypeOfLocation" Multiplicity="1" />
+          <End Role="LocationAndResource" Type="Self.LocationAndResource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfLocation">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LocationAndResource">
+              <PropertyRef Name="IDTypeOfLocation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MainLocation_TypeOfRegion">
           <End Role="TypeOfRegion" Type="Self.TypeOfRegion" Multiplicity="0..1" />
           <End Role="MainLocation" Type="Self.MainLocation" Multiplicity="*" />
@@ -414,11 +450,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="LocationAndResource">
-          <End Role="MainLocation" Type="Self.MainLocation" Multiplicity="*" />
-          <End Role="TypeOfLocation" Type="Self.TypeOfLocation" Multiplicity="*" />
-        </Association>
-        <EntityContainer Name="DataAlbionMapEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="TestBDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LocationAndResources" EntityType="Self.LocationAndResource" />
           <EntitySet Name="MainLocations" EntityType="Self.MainLocation" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="TypeOfFibers" EntityType="Self.TypeOfFiber" />
@@ -428,6 +461,14 @@
           <EntitySet Name="TypeOfRegions" EntityType="Self.TypeOfRegion" />
           <EntitySet Name="TypeOfStones" EntityType="Self.TypeOfStone" />
           <EntitySet Name="TypeOfWoods" EntityType="Self.TypeOfWood" />
+          <AssociationSet Name="FK_LocationAndResource_MainLocation1" Association="Self.FK_LocationAndResource_MainLocation1">
+            <End Role="MainLocation" EntitySet="MainLocations" />
+            <End Role="LocationAndResource" EntitySet="LocationAndResources" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LocationAndResource_TypeOfLocation1" Association="Self.FK_LocationAndResource_TypeOfLocation1">
+            <End Role="TypeOfLocation" EntitySet="TypeOfLocations" />
+            <End Role="LocationAndResource" EntitySet="LocationAndResources" />
+          </AssociationSet>
           <AssociationSet Name="FK_MainLocation_TypeOfRegion" Association="Self.FK_MainLocation_TypeOfRegion">
             <End Role="TypeOfRegion" EntitySet="TypeOfRegions" />
             <End Role="MainLocation" EntitySet="MainLocations" />
@@ -452,30 +493,36 @@
             <End Role="TypeOfWood" EntitySet="TypeOfWoods" />
             <End Role="TypeOfLocation" EntitySet="TypeOfLocations" />
           </AssociationSet>
-          <AssociationSet Name="LocationAndResource" Association="Self.LocationAndResource">
-            <End Role="MainLocation" EntitySet="MainLocations" />
-            <End Role="TypeOfLocation" EntitySet="TypeOfLocations" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище DataAlbionMapModelContainer" CdmEntityContainer="DataAlbionMapEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище TestBDModelContainer" CdmEntityContainer="TestBDEntities">
+          <EntitySetMapping Name="LocationAndResources">
+            <EntityTypeMapping TypeName="TestBDModel.LocationAndResource">
+              <MappingFragment StoreEntitySet="LocationAndResource">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDMainLocation" ColumnName="IDMainLocation" />
+                <ScalarProperty Name="IDTypeOfLocation" ColumnName="IDTypeOfLocation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="MainLocations">
-            <EntityTypeMapping TypeName="DataAlbionMapModel.MainLocation">
+            <EntityTypeMapping TypeName="TestBDModel.MainLocation">
               <MappingFragment StoreEntitySet="MainLocation">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="IDRegion" ColumnName="IDRegion" />
                 <ScalarProperty Name="LevelLocation" ColumnName="LevelLocation" />
                 <ScalarProperty Name="Enchantment" ColumnName="Enchantment" />
+                <ScalarProperty Name="ImageLocation" ColumnName="ImageLocation" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="DataAlbionMapModel.sysdiagram">
+            <EntityTypeMapping TypeName="TestBDModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -486,7 +533,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TypeOfFibers">
-            <EntityTypeMapping TypeName="DataAlbionMapModel.TypeOfFiber">
+            <EntityTypeMapping TypeName="TestBDModel.TypeOfFiber">
               <MappingFragment StoreEntitySet="TypeOfFiber">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NameFiber" ColumnName="NameFiber" />
@@ -496,7 +543,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TypeOfHides">
-            <EntityTypeMapping TypeName="DataAlbionMapModel.TypeOfHide">
+            <EntityTypeMapping TypeName="TestBDModel.TypeOfHide">
               <MappingFragment StoreEntitySet="TypeOfHide">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NameHide" ColumnName="NameHide" />
@@ -506,7 +553,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TypeOfLocations">
-            <EntityTypeMapping TypeName="DataAlbionMapModel.TypeOfLocation">
+            <EntityTypeMapping TypeName="TestBDModel.TypeOfLocation">
               <MappingFragment StoreEntitySet="TypeOfLocation">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NameLocation" ColumnName="NameLocation" />
@@ -519,7 +566,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TypeOfOres">
-            <EntityTypeMapping TypeName="DataAlbionMapModel.TypeOfOre">
+            <EntityTypeMapping TypeName="TestBDModel.TypeOfOre">
               <MappingFragment StoreEntitySet="TypeOfOre">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NameOre" ColumnName="NameOre" />
@@ -529,7 +576,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TypeOfRegions">
-            <EntityTypeMapping TypeName="DataAlbionMapModel.TypeOfRegion">
+            <EntityTypeMapping TypeName="TestBDModel.TypeOfRegion">
               <MappingFragment StoreEntitySet="TypeOfRegion">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NameRegion" ColumnName="NameRegion" />
@@ -538,7 +585,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TypeOfStones">
-            <EntityTypeMapping TypeName="DataAlbionMapModel.TypeOfStone">
+            <EntityTypeMapping TypeName="TestBDModel.TypeOfStone">
               <MappingFragment StoreEntitySet="TypeOfStone">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NameStone" ColumnName="NameStone" />
@@ -548,7 +595,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TypeOfWoods">
-            <EntityTypeMapping TypeName="DataAlbionMapModel.TypeOfWood">
+            <EntityTypeMapping TypeName="TestBDModel.TypeOfWood">
               <MappingFragment StoreEntitySet="TypeOfWood">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NameWood" ColumnName="NameWood" />
@@ -557,14 +604,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="LocationAndResource" TypeName="DataAlbionMapModel.LocationAndResource" StoreEntitySet="LocationAndResource">
-            <EndProperty Name="MainLocation">
-              <ScalarProperty Name="ID" ColumnName="IDMainLocation" />
-            </EndProperty>
-            <EndProperty Name="TypeOfLocation">
-              <ScalarProperty Name="ID" ColumnName="IDTypeOfLocation" />
-            </EndProperty>
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

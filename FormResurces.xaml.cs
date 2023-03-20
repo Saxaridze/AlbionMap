@@ -19,20 +19,21 @@ namespace AlbionMap
     /// </summary>
     public partial class FormResurces : Window
     {
-        DataAlbionMapEntities context;
-        List<MainLocation> mainLocations;
-
-        public FormResurces(DataAlbionMapEntities context1, MainLocation mainLocation)
+        TestBDEntities context;
+        public FormResurces(TestBDEntities context1, MainLocation mainLocation)
         {
-            this.InitializeComponent();
-            context = new DataAlbionMapEntities();
-            this.context = context1;
-            this.DataContext = mainLocation;
-        }
+            InitializeComponent();
 
+            this.context = context1;
+            this.DataContext = mainLocation;            
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            mainLocations = context.MainLocations.ToList();
+            string filter = TxtNameLoc.Text;
+            List<LocationAndResource> mainloc = context.LocationAndResources.ToList();
+            mainloc = mainloc.Where(x => x.MainLocation.Name.ToLower().Contains(filter.ToLower())).ToList();
+            DataResurces.ItemsSource = mainloc;
+
             if (TxtEnchantment.Text == "")
             {
                 TxtEnchantment.Text = "NULL";
@@ -41,31 +42,6 @@ namespace AlbionMap
             else
             {
                 TxtProc.Visibility = Visibility.Visible;
-            }
-
-            if (TxtTypeRegeon.Text == "Безопасный регион - сражения запрещены")
-            {
-                Uri uri = new Uri("C:/Users/Home/Desktop/AlbionMap/Image/TypeRegion/Safe region.png", UriKind.Absolute);
-                ImageSource imgSource = new BitmapImage(uri);
-                ImageRegion.Source = imgSource;
-            }
-            else if (TxtTypeRegeon.Text == "Желтый регион")
-            {
-                Uri uri = new Uri("C:/Users/Home/Desktop/AlbionMap/Image/TypeRegion/Yellow region.png", UriKind.Absolute);
-                ImageSource imgSource = new BitmapImage(uri);
-                ImageRegion.Source = imgSource;
-            }
-            else if (TxtTypeRegeon.Text == "Красный регион")
-            {
-                Uri uri = new Uri("C:/Users/Home/Desktop/AlbionMap/Image/TypeRegion/Red Region.png", UriKind.Absolute);
-                ImageSource imgSource = new BitmapImage(uri);
-                ImageRegion.Source = imgSource;
-            }
-            else if (TxtTypeRegeon.Text == "Черный регион")
-            {
-                Uri uri = new Uri("C:/Users/Home/Desktop/AlbionMap/Image/TypeRegion/Black Region.png", UriKind.Absolute);
-                ImageSource imgSource = new BitmapImage(uri);
-                ImageRegion.Source = imgSource;
             }
 
             if (TxtNameLoc.Text == "Thetford")

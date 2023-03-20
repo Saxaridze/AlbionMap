@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AlbionMap"
         mc:Ignorable="d"
-        Title="FormResurces" Height="500" Width="1000" Loaded="Window_Loaded">
+        Title="FormResurces" Height="500" Width="1200" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -17,7 +17,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="{Binding Name}" x:Name="TxtNameLoc" FontSize="26" Margin="10"></TextBlock>
+            <TextBlock Text="{Binding Name}" x:Name="TxtNameLoc" FontSize="26" Margin="10" ></TextBlock>
             <TextBlock Text="Level - " FontSize="26" Margin="10,10,0,10"></TextBlock>
             <TextBlock Text="{Binding LevelLocation}" x:Name="TxtLvlLoc" FontSize="26" Margin="0,10"></TextBlock>
         </StackPanel>
@@ -39,42 +39,68 @@
                 <Image x:Name="ImageLoc" Stretch="Fill" Width="300" Height="280"></Image>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="5" Orientation="Horizontal">
-                <Image x:Name="ImageRegion" Width="50" Height="50" >
-                    <Image.Source>
-                        <BitmapImage UriSource=""/>
-                    </Image.Source>
-                </Image>
+                <Image x:Name="ImageRegion" Width="50" Height="50" Source="{Binding TypeOfRegion.Image}"></Image>
                 <TextBlock Text="{Binding TypeOfRegion.NameRegion}" x:Name="TxtTypeRegeon" FontSize="18" Margin="0 0 0 0"></TextBlock>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="2" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="45"/>
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0">
-                <TextBlock Text="Wood" FontSize="18"></TextBlock>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1">
-                <TextBlock Text="Stoune" FontSize="18"></TextBlock>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2">
-                <TextBlock Text="Hide" FontSize="18"></TextBlock>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="3">
-                <TextBlock Text="Fiber" FontSize="18"></TextBlock>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="4">
-                <TextBlock Text="Ore" FontSize="18"></TextBlock>
-            </StackPanel>
+            <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5">
+                <DataGrid x:Name="DataResurces" AutoGenerateColumns="False" IsReadOnly="True" ColumnWidth="*">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="Wood" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Image Height="60" Width="100" Source="{Binding TypeOfLocation.TypeOfWood.Image}"></Image>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Stone" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding TypeOfLocation.TypeOfStone.NameStone}"></TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Hide" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding TypeOfLocation.TypeOfHide.NameHide}"></TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Fiber" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding TypeOfLocation.TypeOfFiber.NameFiber}"></TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Ore" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding TypeOfLocation.TypeOfOre.NameOre}"></TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

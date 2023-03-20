@@ -13,10 +13,10 @@ namespace AlbionMap
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DataAlbionMapEntities : DbContext
+    public partial class TestBDEntities : DbContext
     {
-        public DataAlbionMapEntities()
-            : base("name=DataAlbionMapEntities")
+        public TestBDEntities()
+            : base("name=TestBDEntities")
         {
         }
     
@@ -25,6 +25,7 @@ namespace AlbionMap
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<LocationAndResource> LocationAndResources { get; set; }
         public virtual DbSet<MainLocation> MainLocations { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TypeOfFiber> TypeOfFibers { get; set; }

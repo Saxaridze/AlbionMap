@@ -17,7 +17,7 @@ namespace AlbionMap
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TypeOfLocation()
         {
-            this.MainLocations = new HashSet<MainLocation>();
+            this.LocationAndResources = new HashSet<LocationAndResource>();
         }
     
         public int ID { get; set; }
@@ -28,12 +28,12 @@ namespace AlbionMap
         public Nullable<int> IfFiber { get; set; }
         public Nullable<int> IfOre { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LocationAndResource> LocationAndResources { get; set; }
         public virtual TypeOfFiber TypeOfFiber { get; set; }
         public virtual TypeOfHide TypeOfHide { get; set; }
         public virtual TypeOfOre TypeOfOre { get; set; }
         public virtual TypeOfStone TypeOfStone { get; set; }
         public virtual TypeOfWood TypeOfWood { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MainLocation> MainLocations { get; set; }
     }
 }

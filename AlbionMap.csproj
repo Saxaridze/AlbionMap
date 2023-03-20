@@ -92,25 +92,37 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BDMap.cs">
+    <Compile Include="BDMapAlbion.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BDMap.tt</DependentUpon>
+      <DependentUpon>BDMapAlbion.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAlbionMapDataSet.Designer.cs">
+    <Compile Include="BDMapAlbion.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataAlbionMapDataSet.xsd</DependentUpon>
+      <DependentUpon>BDMapAlbion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BDMapAlbion.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BDMapAlbion.edmx</DependentUpon>
     </Compile>
     <Compile Include="FormResurces.xaml.cs">
       <DependentUpon>FormResurces.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ImagePartial.cs" />
+    <Compile Include="ImagesWindow.xaml.cs">
+      <DependentUpon>ImagesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LocationAndResource.cs">
+      <DependentUpon>BDMapAlbion.tt</DependentUpon>
+    </Compile>
     <Compile Include="MainLocation.cs">
-      <DependentUpon>BDMap.tt</DependentUpon>
+      <DependentUpon>BDMapAlbion.tt</DependentUpon>
     </Compile>
     <Compile Include="Meneger.cs" />
     <Compile Include="sysdiagram.cs">
-      <DependentUpon>BDMap.tt</DependentUpon>
+      <DependentUpon>BDMapAlbion.tt</DependentUpon>
     </Compile>
     <Compile Include="TableMap.xaml.cs">
       <DependentUpon>TableMap.xaml</DependentUpon>
@@ -119,27 +131,34 @@
       <DependentUpon>TestPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="TypeOfFiber.cs">
-      <DependentUpon>BDMap.tt</DependentUpon>
+      <DependentUpon>BDMapAlbion.tt</DependentUpon>
     </Compile>
     <Compile Include="TypeOfHide.cs">
-      <DependentUpon>BDMap.tt</DependentUpon>
+      <DependentUpon>BDMapAlbion.tt</DependentUpon>
     </Compile>
     <Compile Include="TypeOfLocation.cs">
-      <DependentUpon>BDMap.tt</DependentUpon>
+      <DependentUpon>BDMapAlbion.tt</DependentUpon>
     </Compile>
     <Compile Include="TypeOfOre.cs">
-      <DependentUpon>BDMap.tt</DependentUpon>
+      <DependentUpon>BDMapAlbion.tt</DependentUpon>
     </Compile>
     <Compile Include="TypeOfRegion.cs">
-      <DependentUpon>BDMap.tt</DependentUpon>
+      <DependentUpon>BDMapAlbion.tt</DependentUpon>
     </Compile>
     <Compile Include="TypeOfStone.cs">
-      <DependentUpon>BDMap.tt</DependentUpon>
+      <DependentUpon>BDMapAlbion.tt</DependentUpon>
     </Compile>
     <Compile Include="TypeOfWood.cs">
-      <DependentUpon>BDMap.tt</DependentUpon>
+      <DependentUpon>BDMapAlbion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VisiblImage.xaml.cs">
+      <DependentUpon>VisiblImage.xaml</DependentUpon>
     </Compile>
     <Page Include="FormResurces.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImagesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -151,16 +170,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BDMap.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BDMap.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BDMap.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BDMap.edmx</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -170,6 +179,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VisiblImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -192,23 +205,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="BDMap.edmx">
+    <EntityDeploy Include="BDMapAlbion.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BDMap.Designer.cs</LastGenOutput>
+      <LastGenOutput>BDMapAlbion.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="BDMap.edmx.diagram">
-      <DependentUpon>BDMap.edmx</DependentUpon>
-    </None>
-    <None Include="DataAlbionMapDataSet.xsc">
-      <DependentUpon>DataAlbionMapDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="DataAlbionMapDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataAlbionMapDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DataAlbionMapDataSet.xss">
-      <DependentUpon>DataAlbionMapDataSet.xsd</DependentUpon>
+    <None Include="BDMapAlbion.edmx.diagram">
+      <DependentUpon>BDMapAlbion.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -220,24 +222,36 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BDMap.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BDMap.Context.cs</LastGenOutput>
-      <DependentUpon>BDMap.edmx</DependentUpon>
-    </Content>
-    <Content Include="BDMap.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BDMap.edmx</DependentUpon>
-      <LastGenOutput>BDMap.cs</LastGenOutput>
-    </Content>
-    <Resource Include="Image\TypeRegion\Black Region.png" />
-    <Resource Include="Image\TypeRegion\Red Region.png" />
-    <Resource Include="Image\TypeRegion\Safe region.png" />
-    <Resource Include="Image\TypeRegion\Yellow region.png" />
     <Resource Include="Image\IconLoc\Thetford_1.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\TypeOfWood\BirchLogs.png" />
+    <Resource Include="Image\TypeOfWood\BloodTreeLogs.png" />
+    <Resource Include="Image\TypeOfWood\CedarLogs.png" />
+    <Resource Include="Image\TypeOfWood\ChestnutLogs.png" />
+    <Resource Include="Image\TypeOfWood\IronwoodLogs.png" />
+    <Resource Include="Image\TypeOfWood\OrdinaryLogs.png" />
+    <Resource Include="Image\TypeOfWood\PineLogs.png" />
+    <Resource Include="Image\TypeOfWood\WhiteWoodLogs.png" />
+    <Resource Include="Image\TypeRegion\BlackRegion.png" />
+    <Resource Include="Image\TypeRegion\RedRegion.png" />
+    <Resource Include="Image\TypeRegion\SafeRegion.png" />
+    <Resource Include="Image\TypeRegion\YellowRegion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BDMapAlbion.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BDMapAlbion.edmx</DependentUpon>
+      <LastGenOutput>BDMapAlbion.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="BDMapAlbion.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BDMapAlbion.edmx</DependentUpon>
+      <LastGenOutput>BDMapAlbion.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.8.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.8.0\build\MaterialDesignThemes.targets')" />

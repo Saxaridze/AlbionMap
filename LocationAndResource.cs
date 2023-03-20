@@ -12,20 +12,13 @@ namespace AlbionMap
     using System;
     using System.Collections.Generic;
     
-    public partial class TypeOfOre
+    public partial class LocationAndResource
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TypeOfOre()
-        {
-            this.TypeOfLocations = new HashSet<TypeOfLocation>();
-        }
-    
         public int ID { get; set; }
-        public string NameOre { get; set; }
-        public string LevelOre { get; set; }
-        public string Image { get; set; }
+        public int IDMainLocation { get; set; }
+        public int IDTypeOfLocation { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TypeOfLocation> TypeOfLocations { get; set; }
+        public virtual MainLocation MainLocation { get; set; }
+        public virtual TypeOfLocation TypeOfLocation { get; set; }
     }
 }

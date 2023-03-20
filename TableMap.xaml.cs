@@ -20,14 +20,14 @@ namespace AlbionMap
     /// </summary>
     public partial class TableMap : Page
     {
-        DataAlbionMapEntities context;
+        TestBDEntities context;
         List<MainLocation> mainLocations;
         string currentLetter = "";
 
         public TableMap()
         {
             InitializeComponent();
-            context = new DataAlbionMapEntities();
+            context = new TestBDEntities();
             ShowLetters();
             ShowTable();
         }
