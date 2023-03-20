@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a59b4b336c9b4e46b5438f2a37457809" Name="Diagram1" ZoomLevel="89">
+        <EntityTypeShape EntityType="DataAlbionMapModel.MainLocation" Width="1.5" PointX="7.375" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataAlbionMapModel.sysdiagram" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataAlbionMapModel.TypeOfFiber" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataAlbionMapModel.TypeOfHide" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataAlbionMapModel.TypeOfLocation" Width="1.5" PointX="10.625" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataAlbionMapModel.TypeOfOre" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataAlbionMapModel.TypeOfRegion" Width="1.5" PointX="4.625" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataAlbionMapModel.TypeOfStone" Width="1.5" PointX="3" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataAlbionMapModel.TypeOfWood" Width="1.5" PointX="3" PointY="16.375" IsExpanded="true" />
+        <AssociationConnector Association="DataAlbionMapModel.FK_MainLocation_TypeOfRegion" ManuallyRouted="false" />
+        <AssociationConnector Association="DataAlbionMapModel.FK_TypeOfLocation_TypeOfFiber" ManuallyRouted="false" />
+        <AssociationConnector Association="DataAlbionMapModel.FK_TypeOfLocation_TypeOfHide" ManuallyRouted="false" />
+        <AssociationConnector Association="DataAlbionMapModel.FK_TypeOfLocation_TypeOfOre" ManuallyRouted="false" />
+        <AssociationConnector Association="DataAlbionMapModel.FK_TypeOfLocation_TypeOfStone" ManuallyRouted="false" />
+        <AssociationConnector Association="DataAlbionMapModel.FK_TypeOfLocation_TypeOfWood" ManuallyRouted="false" />
+        <AssociationConnector Association="DataAlbionMapModel.LocationAndResource" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

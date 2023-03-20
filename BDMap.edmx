@@ -1,0 +1,591 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище DataAlbionMapModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="LocationAndResource">
+          <Key>
+            <PropertyRef Name="IDMainLocation" />
+            <PropertyRef Name="IDTypeOfLocation" />
+          </Key>
+          <Property Name="IDMainLocation" Type="int" Nullable="false" />
+          <Property Name="IDTypeOfLocation" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MainLocation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="IDRegion" Type="int" />
+          <Property Name="LevelLocation" Type="nvarchar" MaxLength="50" />
+          <Property Name="Enchantment" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TypeOfFiber">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NameFiber" Type="nvarchar" MaxLength="100" />
+          <Property Name="LevelFiber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image" Type="image" />
+        </EntityType>
+        <EntityType Name="TypeOfHide">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NameHide" Type="nvarchar" MaxLength="100" />
+          <Property Name="LevelHide" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image" Type="image" />
+        </EntityType>
+        <EntityType Name="TypeOfLocation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NameLocation" Type="nvarchar" MaxLength="100" />
+          <Property Name="IfWood" Type="int" />
+          <Property Name="IfStone" Type="int" />
+          <Property Name="IfHide" Type="int" />
+          <Property Name="IfFiber" Type="int" />
+          <Property Name="IfOre" Type="int" />
+        </EntityType>
+        <EntityType Name="TypeOfOre">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NameOre" Type="nvarchar" MaxLength="100" />
+          <Property Name="LevelOre" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image" Type="image" />
+        </EntityType>
+        <EntityType Name="TypeOfRegion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NameRegion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image" Type="image" />
+        </EntityType>
+        <EntityType Name="TypeOfStone">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NameStone" Type="nvarchar" MaxLength="100" />
+          <Property Name="LevelStone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image" Type="image" />
+        </EntityType>
+        <EntityType Name="TypeOfWood">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NameWood" Type="nvarchar" MaxLength="100" />
+          <Property Name="LevelWood" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image" Type="image" />
+        </EntityType>
+        <Association Name="FK_LocationAndResource_MainLocation">
+          <End Role="MainLocation" Type="Self.MainLocation" Multiplicity="1" />
+          <End Role="LocationAndResource" Type="Self.LocationAndResource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MainLocation">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LocationAndResource">
+              <PropertyRef Name="IDMainLocation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LocationAndResource_TypeOfLocation">
+          <End Role="TypeOfLocation" Type="Self.TypeOfLocation" Multiplicity="1" />
+          <End Role="LocationAndResource" Type="Self.LocationAndResource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfLocation">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LocationAndResource">
+              <PropertyRef Name="IDTypeOfLocation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MainLocation_TypeOfRegion">
+          <End Role="TypeOfRegion" Type="Self.TypeOfRegion" Multiplicity="0..1" />
+          <End Role="MainLocation" Type="Self.MainLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfRegion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MainLocation">
+              <PropertyRef Name="IDRegion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeOfLocation_TypeOfFiber">
+          <End Role="TypeOfFiber" Type="Self.TypeOfFiber" Multiplicity="0..1" />
+          <End Role="TypeOfLocation" Type="Self.TypeOfLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfFiber">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TypeOfLocation">
+              <PropertyRef Name="IfFiber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeOfLocation_TypeOfHide">
+          <End Role="TypeOfHide" Type="Self.TypeOfHide" Multiplicity="0..1" />
+          <End Role="TypeOfLocation" Type="Self.TypeOfLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfHide">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TypeOfLocation">
+              <PropertyRef Name="IfHide" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeOfLocation_TypeOfOre">
+          <End Role="TypeOfOre" Type="Self.TypeOfOre" Multiplicity="0..1" />
+          <End Role="TypeOfLocation" Type="Self.TypeOfLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfOre">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TypeOfLocation">
+              <PropertyRef Name="IfOre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeOfLocation_TypeOfStone">
+          <End Role="TypeOfStone" Type="Self.TypeOfStone" Multiplicity="0..1" />
+          <End Role="TypeOfLocation" Type="Self.TypeOfLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfStone">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TypeOfLocation">
+              <PropertyRef Name="IfStone" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeOfLocation_TypeOfWood">
+          <End Role="TypeOfWood" Type="Self.TypeOfWood" Multiplicity="0..1" />
+          <End Role="TypeOfLocation" Type="Self.TypeOfLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfWood">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TypeOfLocation">
+              <PropertyRef Name="IfWood" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище DataAlbionMapModelContainer">
+          <EntitySet Name="LocationAndResource" EntityType="Self.LocationAndResource" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MainLocation" EntityType="Self.MainLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfFiber" EntityType="Self.TypeOfFiber" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfHide" EntityType="Self.TypeOfHide" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfLocation" EntityType="Self.TypeOfLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfOre" EntityType="Self.TypeOfOre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfRegion" EntityType="Self.TypeOfRegion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfStone" EntityType="Self.TypeOfStone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfWood" EntityType="Self.TypeOfWood" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_LocationAndResource_MainLocation" Association="Self.FK_LocationAndResource_MainLocation">
+            <End Role="MainLocation" EntitySet="MainLocation" />
+            <End Role="LocationAndResource" EntitySet="LocationAndResource" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LocationAndResource_TypeOfLocation" Association="Self.FK_LocationAndResource_TypeOfLocation">
+            <End Role="TypeOfLocation" EntitySet="TypeOfLocation" />
+            <End Role="LocationAndResource" EntitySet="LocationAndResource" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MainLocation_TypeOfRegion" Association="Self.FK_MainLocation_TypeOfRegion">
+            <End Role="TypeOfRegion" EntitySet="TypeOfRegion" />
+            <End Role="MainLocation" EntitySet="MainLocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeOfLocation_TypeOfFiber" Association="Self.FK_TypeOfLocation_TypeOfFiber">
+            <End Role="TypeOfFiber" EntitySet="TypeOfFiber" />
+            <End Role="TypeOfLocation" EntitySet="TypeOfLocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeOfLocation_TypeOfHide" Association="Self.FK_TypeOfLocation_TypeOfHide">
+            <End Role="TypeOfHide" EntitySet="TypeOfHide" />
+            <End Role="TypeOfLocation" EntitySet="TypeOfLocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeOfLocation_TypeOfOre" Association="Self.FK_TypeOfLocation_TypeOfOre">
+            <End Role="TypeOfOre" EntitySet="TypeOfOre" />
+            <End Role="TypeOfLocation" EntitySet="TypeOfLocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeOfLocation_TypeOfStone" Association="Self.FK_TypeOfLocation_TypeOfStone">
+            <End Role="TypeOfStone" EntitySet="TypeOfStone" />
+            <End Role="TypeOfLocation" EntitySet="TypeOfLocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeOfLocation_TypeOfWood" Association="Self.FK_TypeOfLocation_TypeOfWood">
+            <End Role="TypeOfWood" EntitySet="TypeOfWood" />
+            <End Role="TypeOfLocation" EntitySet="TypeOfLocation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DataAlbionMapModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="MainLocation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IDRegion" Type="Int32" />
+          <Property Name="LevelLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Enchantment" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="TypeOfRegion" Relationship="Self.FK_MainLocation_TypeOfRegion" FromRole="MainLocation" ToRole="TypeOfRegion" />
+          <NavigationProperty Name="TypeOfLocations" Relationship="Self.LocationAndResource" FromRole="MainLocation" ToRole="TypeOfLocation" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TypeOfFiber">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NameFiber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LevelFiber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="TypeOfLocations" Relationship="Self.FK_TypeOfLocation_TypeOfFiber" FromRole="TypeOfFiber" ToRole="TypeOfLocation" />
+        </EntityType>
+        <EntityType Name="TypeOfHide">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NameHide" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LevelHide" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="TypeOfLocations" Relationship="Self.FK_TypeOfLocation_TypeOfHide" FromRole="TypeOfHide" ToRole="TypeOfLocation" />
+        </EntityType>
+        <EntityType Name="TypeOfLocation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NameLocation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IfWood" Type="Int32" />
+          <Property Name="IfStone" Type="Int32" />
+          <Property Name="IfHide" Type="Int32" />
+          <Property Name="IfFiber" Type="Int32" />
+          <Property Name="IfOre" Type="Int32" />
+          <NavigationProperty Name="TypeOfFiber" Relationship="Self.FK_TypeOfLocation_TypeOfFiber" FromRole="TypeOfLocation" ToRole="TypeOfFiber" />
+          <NavigationProperty Name="TypeOfHide" Relationship="Self.FK_TypeOfLocation_TypeOfHide" FromRole="TypeOfLocation" ToRole="TypeOfHide" />
+          <NavigationProperty Name="TypeOfOre" Relationship="Self.FK_TypeOfLocation_TypeOfOre" FromRole="TypeOfLocation" ToRole="TypeOfOre" />
+          <NavigationProperty Name="TypeOfStone" Relationship="Self.FK_TypeOfLocation_TypeOfStone" FromRole="TypeOfLocation" ToRole="TypeOfStone" />
+          <NavigationProperty Name="TypeOfWood" Relationship="Self.FK_TypeOfLocation_TypeOfWood" FromRole="TypeOfLocation" ToRole="TypeOfWood" />
+          <NavigationProperty Name="MainLocations" Relationship="Self.LocationAndResource" FromRole="TypeOfLocation" ToRole="MainLocation" />
+        </EntityType>
+        <EntityType Name="TypeOfOre">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NameOre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LevelOre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="TypeOfLocations" Relationship="Self.FK_TypeOfLocation_TypeOfOre" FromRole="TypeOfOre" ToRole="TypeOfLocation" />
+        </EntityType>
+        <EntityType Name="TypeOfRegion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NameRegion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="MainLocations" Relationship="Self.FK_MainLocation_TypeOfRegion" FromRole="TypeOfRegion" ToRole="MainLocation" />
+        </EntityType>
+        <EntityType Name="TypeOfStone">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NameStone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LevelStone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="TypeOfLocations" Relationship="Self.FK_TypeOfLocation_TypeOfStone" FromRole="TypeOfStone" ToRole="TypeOfLocation" />
+        </EntityType>
+        <EntityType Name="TypeOfWood">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NameWood" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LevelWood" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="TypeOfLocations" Relationship="Self.FK_TypeOfLocation_TypeOfWood" FromRole="TypeOfWood" ToRole="TypeOfLocation" />
+        </EntityType>
+        <Association Name="FK_MainLocation_TypeOfRegion">
+          <End Role="TypeOfRegion" Type="Self.TypeOfRegion" Multiplicity="0..1" />
+          <End Role="MainLocation" Type="Self.MainLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfRegion">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MainLocation">
+              <PropertyRef Name="IDRegion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeOfLocation_TypeOfFiber">
+          <End Role="TypeOfFiber" Type="Self.TypeOfFiber" Multiplicity="0..1" />
+          <End Role="TypeOfLocation" Type="Self.TypeOfLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfFiber">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TypeOfLocation">
+              <PropertyRef Name="IfFiber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeOfLocation_TypeOfHide">
+          <End Role="TypeOfHide" Type="Self.TypeOfHide" Multiplicity="0..1" />
+          <End Role="TypeOfLocation" Type="Self.TypeOfLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfHide">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TypeOfLocation">
+              <PropertyRef Name="IfHide" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeOfLocation_TypeOfOre">
+          <End Role="TypeOfOre" Type="Self.TypeOfOre" Multiplicity="0..1" />
+          <End Role="TypeOfLocation" Type="Self.TypeOfLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfOre">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TypeOfLocation">
+              <PropertyRef Name="IfOre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeOfLocation_TypeOfStone">
+          <End Role="TypeOfStone" Type="Self.TypeOfStone" Multiplicity="0..1" />
+          <End Role="TypeOfLocation" Type="Self.TypeOfLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfStone">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TypeOfLocation">
+              <PropertyRef Name="IfStone" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeOfLocation_TypeOfWood">
+          <End Role="TypeOfWood" Type="Self.TypeOfWood" Multiplicity="0..1" />
+          <End Role="TypeOfLocation" Type="Self.TypeOfLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfWood">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TypeOfLocation">
+              <PropertyRef Name="IfWood" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LocationAndResource">
+          <End Role="MainLocation" Type="Self.MainLocation" Multiplicity="*" />
+          <End Role="TypeOfLocation" Type="Self.TypeOfLocation" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DataAlbionMapEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MainLocations" EntityType="Self.MainLocation" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TypeOfFibers" EntityType="Self.TypeOfFiber" />
+          <EntitySet Name="TypeOfHides" EntityType="Self.TypeOfHide" />
+          <EntitySet Name="TypeOfLocations" EntityType="Self.TypeOfLocation" />
+          <EntitySet Name="TypeOfOres" EntityType="Self.TypeOfOre" />
+          <EntitySet Name="TypeOfRegions" EntityType="Self.TypeOfRegion" />
+          <EntitySet Name="TypeOfStones" EntityType="Self.TypeOfStone" />
+          <EntitySet Name="TypeOfWoods" EntityType="Self.TypeOfWood" />
+          <AssociationSet Name="FK_MainLocation_TypeOfRegion" Association="Self.FK_MainLocation_TypeOfRegion">
+            <End Role="TypeOfRegion" EntitySet="TypeOfRegions" />
+            <End Role="MainLocation" EntitySet="MainLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeOfLocation_TypeOfFiber" Association="Self.FK_TypeOfLocation_TypeOfFiber">
+            <End Role="TypeOfFiber" EntitySet="TypeOfFibers" />
+            <End Role="TypeOfLocation" EntitySet="TypeOfLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeOfLocation_TypeOfHide" Association="Self.FK_TypeOfLocation_TypeOfHide">
+            <End Role="TypeOfHide" EntitySet="TypeOfHides" />
+            <End Role="TypeOfLocation" EntitySet="TypeOfLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeOfLocation_TypeOfOre" Association="Self.FK_TypeOfLocation_TypeOfOre">
+            <End Role="TypeOfOre" EntitySet="TypeOfOres" />
+            <End Role="TypeOfLocation" EntitySet="TypeOfLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeOfLocation_TypeOfStone" Association="Self.FK_TypeOfLocation_TypeOfStone">
+            <End Role="TypeOfStone" EntitySet="TypeOfStones" />
+            <End Role="TypeOfLocation" EntitySet="TypeOfLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeOfLocation_TypeOfWood" Association="Self.FK_TypeOfLocation_TypeOfWood">
+            <End Role="TypeOfWood" EntitySet="TypeOfWoods" />
+            <End Role="TypeOfLocation" EntitySet="TypeOfLocations" />
+          </AssociationSet>
+          <AssociationSet Name="LocationAndResource" Association="Self.LocationAndResource">
+            <End Role="MainLocation" EntitySet="MainLocations" />
+            <End Role="TypeOfLocation" EntitySet="TypeOfLocations" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DataAlbionMapModelContainer" CdmEntityContainer="DataAlbionMapEntities">
+          <EntitySetMapping Name="MainLocations">
+            <EntityTypeMapping TypeName="DataAlbionMapModel.MainLocation">
+              <MappingFragment StoreEntitySet="MainLocation">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IDRegion" ColumnName="IDRegion" />
+                <ScalarProperty Name="LevelLocation" ColumnName="LevelLocation" />
+                <ScalarProperty Name="Enchantment" ColumnName="Enchantment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DataAlbionMapModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfFibers">
+            <EntityTypeMapping TypeName="DataAlbionMapModel.TypeOfFiber">
+              <MappingFragment StoreEntitySet="TypeOfFiber">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameFiber" ColumnName="NameFiber" />
+                <ScalarProperty Name="LevelFiber" ColumnName="LevelFiber" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfHides">
+            <EntityTypeMapping TypeName="DataAlbionMapModel.TypeOfHide">
+              <MappingFragment StoreEntitySet="TypeOfHide">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameHide" ColumnName="NameHide" />
+                <ScalarProperty Name="LevelHide" ColumnName="LevelHide" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfLocations">
+            <EntityTypeMapping TypeName="DataAlbionMapModel.TypeOfLocation">
+              <MappingFragment StoreEntitySet="TypeOfLocation">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameLocation" ColumnName="NameLocation" />
+                <ScalarProperty Name="IfWood" ColumnName="IfWood" />
+                <ScalarProperty Name="IfStone" ColumnName="IfStone" />
+                <ScalarProperty Name="IfHide" ColumnName="IfHide" />
+                <ScalarProperty Name="IfFiber" ColumnName="IfFiber" />
+                <ScalarProperty Name="IfOre" ColumnName="IfOre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfOres">
+            <EntityTypeMapping TypeName="DataAlbionMapModel.TypeOfOre">
+              <MappingFragment StoreEntitySet="TypeOfOre">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameOre" ColumnName="NameOre" />
+                <ScalarProperty Name="LevelOre" ColumnName="LevelOre" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfRegions">
+            <EntityTypeMapping TypeName="DataAlbionMapModel.TypeOfRegion">
+              <MappingFragment StoreEntitySet="TypeOfRegion">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameRegion" ColumnName="NameRegion" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfStones">
+            <EntityTypeMapping TypeName="DataAlbionMapModel.TypeOfStone">
+              <MappingFragment StoreEntitySet="TypeOfStone">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameStone" ColumnName="NameStone" />
+                <ScalarProperty Name="LevelStone" ColumnName="LevelStone" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfWoods">
+            <EntityTypeMapping TypeName="DataAlbionMapModel.TypeOfWood">
+              <MappingFragment StoreEntitySet="TypeOfWood">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NameWood" ColumnName="NameWood" />
+                <ScalarProperty Name="LevelWood" ColumnName="LevelWood" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="LocationAndResource" TypeName="DataAlbionMapModel.LocationAndResource" StoreEntitySet="LocationAndResource">
+            <EndProperty Name="MainLocation">
+              <ScalarProperty Name="ID" ColumnName="IDMainLocation" />
+            </EndProperty>
+            <EndProperty Name="TypeOfLocation">
+              <ScalarProperty Name="ID" ColumnName="IDTypeOfLocation" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
